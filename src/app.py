@@ -2,16 +2,13 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-todos = [
-    {
-        "label": "My first task",
-        "done": False
-    }
-]
+todos = [ { "done": True, "label": "Sample Todo 1" } ]
 
 @app.route('/todos', methods=['GET'])
 def get_todos():
     return jsonify(todos)
+
+
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
@@ -20,7 +17,9 @@ def add_new_todo():
     
     todos.append(request_body)
     
-    return jsonify(todos)
+    return todos
+
+
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
